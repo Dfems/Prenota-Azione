@@ -69,16 +69,16 @@ npm run gen:api
 
 ## 📦 Script principali (root `package.json`)
 
-| Script           | Descrizione                                                  |
-|------------------|--------------------------------------------------------------|
-| `bootstrap`      | Installa dipendenze e link locali (lerna bootstrap)          |
-| `gen:api`        | Genera tipi TS da spec OpenAPI (openapi-typescript)          |
-| `start`          | Avvia in parallelo backend (NestJS) e frontend (Vite dev)    |
-| `build`          | Compila shared → components → backend → tutti i frontends    |
-| `clean`          | Rimuove `dist/`, `node_modules/` e artefatti in ogni package |
-| `lint`           | Esegue ESLint su tutti i packages                            |
-| `format`         | Esegue Prettier su tutti i packages                          |
-| `test`           | Esegue suite di test (Jest, E2E) su tutti i packages         |
+| Script      | Descrizione                                                  |
+| ----------- | ------------------------------------------------------------ |
+| `bootstrap` | Installa dipendenze e link locali (lerna bootstrap)          |
+| `gen:api`   | Genera tipi TS da spec OpenAPI (openapi-typescript)          |
+| `start`     | Avvia in parallelo backend (NestJS) e frontend (Vite dev)    |
+| `build`     | Compila shared → components → backend → tutti i frontends    |
+| `clean`     | Rimuove `dist/`, `node_modules/` e artefatti in ogni package |
+| `lint`      | Esegue ESLint su tutti i packages                            |
+| `format`    | Esegue Prettier su tutti i packages                          |
+| `test`      | Esegue suite di test (Jest, E2E) su tutti i packages         |
 
 ---
 
@@ -108,6 +108,7 @@ docker-compose up --build
 ## 🚀 CI/CD (GitHub Actions)
 
 ### .github/workflows/ci.yml
+
 ```yaml
 name: CI
 on: [push, pull_request]
@@ -128,6 +129,7 @@ jobs:
 ```
 
 ### .github/workflows/cd.yml
+
 ```yaml
 name: CD
 on:
@@ -152,4 +154,3 @@ jobs:
 ## 🎯 Conclusione
 
 Questa configurazione offre un workflow end‑to‑end per lo sviluppo, testing, build e deploy di più applicazioni frontend e backend, garantendo qualità, consistenza e facilità di estensione nel tempo.
-

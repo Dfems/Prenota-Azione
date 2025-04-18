@@ -10,8 +10,5 @@
     "noEmit": false
   },
   "include": ["src"],
-  "references": [
-    { "path": "../../shared" },
-    { "path": "../../components" }
-  ]
+  "references": [{ "path": "../../shared" }, { "path": "../../components" }]
 }

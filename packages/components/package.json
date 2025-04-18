@@ -1,15 +1,14 @@
 {
-    "name": "@prenota/components",
-    "version": "0.1.0",
-    "main": "dist/index.js",
-    "types": "dist/index.d.ts",
-    "scripts": {
-      "build": "tsc -b",
-      "clean": "rimraf dist"
-    },
-    "dependencies": {
-      "react": "^18.0.0",
-      "@prenota/shared": "^0.1.0"
-    }
+  "name": "@prenota/components",
+  "version": "0.1.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -b",
+    "clean": "rimraf dist"
+  },
+  "dependencies": {
+    "react": "^18.0.0",
+    "@prenota/shared": "^0.1.0"
   }
-  
+}

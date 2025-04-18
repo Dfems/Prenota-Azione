@@ -1,10 +1,17 @@
 {
-    "extends": "../../../tsconfig.base.json",
-    "compilerOptions": {
-      "composite": true,
-      "outDir": "dist",
-      "rootDir": "src"
-    },
-    "include": ["src"]
+  "extends": "../../../tsconfig.base.json", // <-- se hai un tsconfig.base, altrimenti sostituiscilo con "./tsconfig.json"
+  "compilerOptions": {
+    "outDir": "dist",
+    "rootDir": "src",
+    "composite": true, // necessaria se il progetto è referenziato da altri
+    "module": "ESNext",
+    "target": "ES2021",
+    "moduleResolution": "Node",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["src/generated/**", "**/*.spec.ts", "node_modules"]
 }
-  

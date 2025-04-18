@@ -4,13 +4,17 @@
   "version": "1.0.0",
   "description": "Questo repository contiene l'architettura di un monorepo modulare per sviluppo full‑stack in TypeScript, con più applicazioni frontend e backend, gestito con Lerna e npm Workspaces.",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "bootstrap": "npm install",
     "start": "lerna run start --parallel",
     "build": "tsc -b",
     "clean": "lerna run clean",
     "gen:api": "node scripts/gen-openapi.js",
-    "watch": "tsc -b --watch"
+    "watch": "tsc -b --watch",
+    "lint": "npx eslint packages/ --ext .ts,.tsx --fix",
+    "format": "prettier --write \"**/*.{ts,tsx,js,json,md}\"",
+    "prepare": "node .husky/init.js"
   },
   "keywords": [],
   "author": "Dfems",
@@ -19,8 +23,22 @@
     "packages/*",
     "packages/apps/*"
   ],
+  "lint-staged": {
+    "*.{ts,tsx}": ["eslint --fix", "prettier --write"]
+  },
   "devDependencies": {
-    "lerna": "^8.2.2"
+    "@eslint/js": "^9.24.0",
+    "@typescript-eslint/eslint-plugin": "^8.30.1",
+    "@typescript-eslint/parser": "^8.30.1",
+    "eslint": "^9.24.0",
+    "eslint-config-prettier": "^10.1.2",
+    "eslint-plugin-prettier": "^5.2.6",
+    "husky": "^9.1.7",
+    "lerna": "^8.2.2",
+    "lint-staged": "^15.5.1",
+    "prettier": "^3.5.3",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.30.1"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.7.0",
