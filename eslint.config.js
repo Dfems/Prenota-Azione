@@ -1,32 +1,29 @@
-// eslint.config.js
-import tseslint from 'typescript-eslint';
-import prettierPlugin from 'eslint-plugin-prettier';
-import prettierConfig from 'eslint-config-prettier';
-
-export default [
-  // ESCLUDI *tutti* i file generati globalmente
-  {
-    ignores: [
-      'packages/apps/backend/src/generated/**',
-      '**/generated/**',
-    ],
+module.exports = {
+  root: true,
+  parser: "@typescript-eslint/parser",
+  parserOptions: {
+    project: ["./tsconfig.lint.json"],
+    tsconfigRootDir: __dirname,
+    ecmaVersion: 2020,
+    sourceType: "module"
   },
-  {
-    files: ['packages/**/*.ts', 'packages/**/*.tsx'],
-    plugins: {
-      '@typescript-eslint': tseslint.plugin,
-    },
-    languageOptions: {
-      parser: tseslint.parser,
-      parserOptions: {
-        project: './tsconfig.eslint.json',
-        tsconfigRootDir: new URL('.', import.meta.url),
-      },
-    },
-    rules: {...prettierConfig.rules,
-      'prettier/prettier': 'error',
-      '@typescript-eslint/no-explicit-any': 'warn',
-      '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
-    },
+  plugins: ["@typescript-eslint", "react", "react-hooks"],
+  extends: [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "prettier"
+  ],
+  settings: { react: { version: "detect" } },
+  ignorePatterns: ["node_modules/", "dist/", "build/", "coverage/"],
+  rules: {
+    // Qui eventuali override custom
   },
-];
+  overrides: [
+    {
+      files: ["**/*.test.{ts,tsx,js,jsx}", "**/__mocks__/**"],
+      env: { jest: true }
+    }
+  ]
+};

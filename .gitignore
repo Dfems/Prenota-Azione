@@ -1,1 +1,42 @@
-node_modules
+# Node
+node_modules/
+
+# Build outputs
+dist/
+build/
+.next/      # se serve
+
+# TypeScript
+*.tsbuildinfo
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+*.log
+
+# Env
+.env
+.env.local
+.env.*.local
+
+# Coverage
+coverage/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.sublime-workspace
+
+# Docker
+docker-compose.override.yml
+
+# Husky
+.husky/_/
+
+# Misc
+.idea/

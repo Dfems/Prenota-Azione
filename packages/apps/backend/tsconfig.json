@@ -4,13 +4,16 @@
     "outDir": "dist",
     "rootDir": "src",
     "composite": true, // necessaria se il progetto è referenziato da altri
-    "module": "ESNext",
-    "target": "ES2021",
+    "module": "commonjs",
+    "target": "ES2017",
     "moduleResolution": "Node",
     "esModuleInterop": true,
     "skipLibCheck": true,
     "strict": true,
-    "forceConsistentCasingInFileNames": true
+    "strictPropertyInitialization": true,
+    "forceConsistentCasingInFileNames": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
   },
   "include": ["src/**/*.ts"],
   "exclude": ["src/generated/**", "**/*.spec.ts", "node_modules"]

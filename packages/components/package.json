@@ -1,14 +1,19 @@
 {
-  "name": "@prenota/components",
-  "version": "0.1.0",
+  "name": "@prenota-azione/components",
+  "version": "1.0.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc -b",
-    "clean": "rimraf dist"
+    "clean": "rimraf dist",
+    "lint": "eslint --ext .ts,.tsx src",
+    "test": "jest"
   },
   "dependencies": {
-    "react": "^18.0.0",
-    "@prenota/shared": "^0.1.0"
-  }
+    "react": "^18.0.0"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0"
+  },
+  "devDependencies": {}
 }

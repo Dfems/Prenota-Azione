@@ -1,47 +1,40 @@
 {
   "name": "prenota-azione",
-  "private": true,
   "version": "1.0.0",
-  "description": "Questo repository contiene l'architettura di un monorepo modulare per sviluppo full‑stack in TypeScript, con più applicazioni frontend e backend, gestito con Lerna e npm Workspaces.",
-  "main": "index.js",
-  "type": "module",
-  "scripts": {
-    "bootstrap": "npm install",
-    "start": "lerna run start --parallel",
-    "build": "tsc -b",
-    "clean": "lerna run clean",
-    "gen:api": "node scripts/gen-openapi.js",
-    "watch": "tsc -b --watch",
-    "lint": "npx eslint packages/ --ext .ts,.tsx --fix",
-    "format": "prettier --write \"**/*.{ts,tsx,js,json,md}\"",
-    "prepare": "node .husky/init.js"
-  },
-  "keywords": [],
-  "author": "Dfems",
-  "license": "ISC",
+  "private": true,
   "workspaces": [
-    "packages/*",
+    "packages/shared",
+    "packages/components",
     "packages/apps/*"
   ],
-  "lint-staged": {
-    "*.{ts,tsx}": ["eslint --fix", "prettier --write"]
+  "scripts": {
+    "bootstrap": "npm install && npm run gen:api",
+    "gen:api": "openapi-typescript ./openapi-spec/api.json --output packages/shared/src/generated/api-types.ts",
+    "start": "concurrently \"npm run serve:backend\" \"npm run serve:frontend\"",
+    "serve:backend": "cd packages/apps/backend && npm run start:dev",
+    "serve:frontend": "cd packages/apps/main && npm run dev",
+    "build": "lerna run build --stream",
+    "clean": "lerna run clean --stream && rimraf node_modules dist",
+    "clean:modules": "rimraf node_modules && npx lerna clean --yes",
+    "reinstall": "npm run clean:modules && npm install && npm run bootstrap",
+    "lint": "eslint --ext .ts,.tsx .",
+    "format": "prettier --write .",
+    "test": "jest --passWithNoTests"
   },
   "devDependencies": {
-    "@eslint/js": "^9.24.0",
-    "@typescript-eslint/eslint-plugin": "^8.30.1",
-    "@typescript-eslint/parser": "^8.30.1",
-    "eslint": "^9.24.0",
-    "eslint-config-prettier": "^10.1.2",
-    "eslint-plugin-prettier": "^5.2.6",
-    "husky": "^9.1.7",
+    "@typescript-eslint/eslint-plugin": "^7.1.0",
+    "@typescript-eslint/parser": "^7.1.0",
+    "concurrently": "^8.0.0",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-react": "^7.34.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "jest": "^29.7.0",
     "lerna": "^8.2.2",
-    "lint-staged": "^15.5.1",
+    "openapi-typescript": "^7.6.1",
     "prettier": "^3.5.3",
-    "typescript": "^5.8.3",
-    "typescript-eslint": "^8.30.1"
-  },
-  "dependencies": {
-    "@reduxjs/toolkit": "^2.7.0",
-    "react-redux": "^9.2.0"
+    "rimraf": "^5.0.0",
+    "ts-jest": "^29.1.2",
+    "typescript": "^5.8.3"
   }
 }

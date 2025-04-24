@@ -1,10 +1,14 @@
 {
-  "name": "@prenota/shared",
-  "version": "0.1.0",
+  "name": "@prenota-azione/shared",
+  "version": "1.0.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc -b",
-    "clean": "rimraf dist"
-  }
+    "clean": "rimraf dist",
+    "lint": "eslint --ext .ts,.tsx src",
+    "test": "jest"
+  },
+  "dependencies": {},
+  "devDependencies": {}
 }
