@@ -4,7 +4,6 @@ node_modules/
 # Build outputs
 dist/
 build/
-.next/      # se serve
 
 # TypeScript
 *.tsbuildinfo
@@ -38,5 +37,3 @@ docker-compose.override.yml
 # Husky
 .husky/_/
 
-# Misc
-.idea/

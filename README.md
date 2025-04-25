@@ -9,7 +9,6 @@ Questo repository contiene l'architettura di un monorepo modulare per sviluppo f
 ```
 workspace-root/
 ├─ .github/                   # Workflow CI/CD (lint, build, test, deploy)
-├─ config/                    # Config condivise: ESLint, Prettier, tsconfig
 ├─ docker/                    # Docker Compose & .env per PostgreSQL + backend
 │  ├─ docker-compose.yml
 │  └─ .env

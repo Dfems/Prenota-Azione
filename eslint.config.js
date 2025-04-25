@@ -1,29 +1,33 @@
-module.exports = {
-  root: true,
-  parser: "@typescript-eslint/parser",
-  parserOptions: {
-    project: ["./tsconfig.lint.json"],
-    tsconfigRootDir: __dirname,
-    ecmaVersion: 2020,
-    sourceType: "module"
+import path from 'path';
+import { fileURLToPath } from 'url';
+import tsParser from '@typescript-eslint/parser';
+import tsPlugin from '@typescript-eslint/eslint-plugin';
+import prettierPlugin from 'eslint-plugin-prettier';
+import prettierConfig from 'eslint-config-prettier';
+
+const __dirname = fileURLToPath(new URL('.', import.meta.url));
+const root = path.resolve(__dirname);
+
+export default [
+  { ignores: ['**/dist/**', '**/generated/**'] },
+  {
+    files: ['packages/**/*.{ts,tsx}'],
+    plugins: {
+      '@typescript-eslint': tsPlugin,
+      prettier: prettierPlugin,
+    },
+    languageOptions: {
+      parser: tsParser,
+      parserOptions: {
+        tsconfigRootDir: root,
+        project: [path.join(root, 'tsconfig.lint.json')],
+      },
+    },
+    rules: {
+      ...prettierConfig.rules,
+      'prettier/prettier': 'error',
+      '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
+      '@typescript-eslint/no-explicit-any': 'warn',
+    },
   },
-  plugins: ["@typescript-eslint", "react", "react-hooks"],
-  extends: [
-    "eslint:recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:react/recommended",
-    "plugin:react-hooks/recommended",
-    "prettier"
-  ],
-  settings: { react: { version: "detect" } },
-  ignorePatterns: ["node_modules/", "dist/", "build/", "coverage/"],
-  rules: {
-    // Qui eventuali override custom
-  },
-  overrides: [
-    {
-      files: ["**/*.test.{ts,tsx,js,jsx}", "**/__mocks__/**"],
-      env: { jest: true }
-    }
-  ]
-};
+];
